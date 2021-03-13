@@ -10,6 +10,8 @@ _**credits to Aneesh**_
 
 ## 🚀 Getting started
 
+Live version: https://react-wasm.azagatti.dev/
+
 To test application you need to have `node` (`yarn` is optional)
 
 Then you can clone the repository.
