@@ -12,3 +12,4 @@ path = "src/lib.rs"
 
 [dependencies]
 wasm-bindgen = "0.2.34"
+fn-memo = "1.2.0"
