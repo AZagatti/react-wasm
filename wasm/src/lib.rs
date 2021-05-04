@@ -6,22 +6,23 @@ pub fn add_two_ints(a: u32, b: u32) -> u32 {
 }
 
 #[wasm_bindgen]
-pub fn fib(number: usize) -> usize {
-    fn fib_memo(n: usize, memo: &mut [Option<usize>]) -> usize {
-        memo[n].unwrap_or_else(|| {
-            let result = {
-                if n > 1 {
-                    fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
-                } else {
-                    1
-                }
-            };
-            memo[n] = Some(result);
-            result
-        })
+pub fn fib(n: usize) -> usize {
+    fn fib_memo(n: usize, memo: &mut [usize; 2]) -> usize {
+        let [a, b] = *memo;
+        let c = a + b;
+        if n == 0 {
+            c
+        } else {
+            *memo = [b, c];
+            fib_memo(n - 1, memo)
+        }
     }
 
-    fib_memo(number, &mut vec![None; number + 1])
+    if n < 2 {
+        1
+    } else {
+        fib_memo(n - 2, &mut [1, 1])
+    }
 }
 
 #[wasm_bindgen]
